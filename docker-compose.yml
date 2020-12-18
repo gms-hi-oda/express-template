@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build: ./express
+    container_name: app
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+  mysql:
+    build: ./mysql
+    container_name: mysql57
+    environment:
+      MYSQL_ROOT_PASSWORD: XGTU3m
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
